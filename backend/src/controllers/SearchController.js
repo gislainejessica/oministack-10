@@ -21,6 +21,6 @@ module.exports = {
        }
      })
 
-     return res.json(techs)
+     return res.json(devs)
   }
 }
