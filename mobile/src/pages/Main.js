@@ -43,7 +43,7 @@ export default function Main({ navigation }) {
         techs
       }
     })
-    console.log(response.data)
+    //console.log(response.data)
     setDevs(response.data.devs)
   }
 
