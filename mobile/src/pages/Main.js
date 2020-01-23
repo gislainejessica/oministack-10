@@ -54,9 +54,7 @@ export default function Main({ navigation }) {
         techs
       }
     })
-    console.log(response.data)
-    setDevs(response.data)
-    setupWebsocket()
+    setDevs(response.data.devs)
   }
 
   function handleRegionChanged(region){
