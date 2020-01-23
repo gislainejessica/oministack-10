@@ -5,6 +5,7 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import api from '../services/api'
+import { connect, disconnect } from '../services/socket'
 
 export default function Main({ navigation }) {
   const [currentRegion, setCurrentRegion] = useState(null)
@@ -33,6 +34,16 @@ export default function Main({ navigation }) {
     loadInicialLocation()
   },[])
 
+  function setupWebsocket(){
+    const { latitude, longitude } = currentRegion
+    
+    connect(
+      latitude,
+      longitude, 
+      techs
+    )
+  }
+
   async function loadDevs(){
     const { latitude, longitude } = currentRegion
 
@@ -44,7 +55,8 @@ export default function Main({ navigation }) {
       }
     })
     console.log(response.data)
-    setDevs(response.data.devs)
+    setDevs(response.data)
+    setupWebsocket()
   }
 
   function handleRegionChanged(region){
@@ -62,7 +74,7 @@ export default function Main({ navigation }) {
         initialRegion={currentRegion} 
         style={styles.map}
       >
-      { devs.map(dev => (
+      { devs && devs.map(dev => (
           <Marker 
           key={dev._id}
           coordinate={{

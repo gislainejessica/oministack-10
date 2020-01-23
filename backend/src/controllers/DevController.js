@@ -33,6 +33,11 @@ module.exports = {
         techs: arrayTechs,
         location
       })
+
+      // Filtrar conexões que estão no raio de busca e com techs especificada
+      
+
+      
     }
     return res.json(dev)
   }
