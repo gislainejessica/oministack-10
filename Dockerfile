@@ -4,7 +4,7 @@ FROM node:12
 WORKDIR /app
 
 # Copia arquivos que se iniciam com package com extesão .json 
-COPY package*.json ./mobile
+COPY package*.json /mobile
 
 # Instala as depedencias que copiaste do arquivo anterior
 RUN npm install
